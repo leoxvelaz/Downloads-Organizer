@@ -1,100 +1,61 @@
-Downloads Organizer v1.0
-Video Demo: <YOUR_YOUTUBE_LINK_HERE>
+Downloads Organizer
+Overview
+
+Downloads Organizer is a lightweight Python tool designed to help you quickly and efficiently organize the contents of your Downloads (or any folder) on macOS. With one click, the app categorizes your files into folders such as Photos, Documents, Videos, Audio, Code, and School, while keeping screenshots neatly tucked into a dedicated Screenshots subfolder.
+
+The app also includes an Undo Organization feature, which restores files back to their original locations and removes any empty folders created during the organization process. The goal is to simplify file management without changing the way you work or requiring complicated setups.
+
+Files in this Repository
+
+organizer.py – The main Python script. This file contains the GUI, the logic to organize files into categories, and the undo functionality.
+
+categories.json – Defines which file extensions belong to which category. You can modify this file to add or remove file types or categories.
+
+README.md – This file, explaining the project, design decisions, and usage.
+
+How It Works
+
+Organize Folder: When you select a folder, the app scans all files, determines their type based on the categories.json file, and moves them into the appropriate folders. Screenshots are automatically placed into a Screenshots subfolder within Photos.
+
+Undo Organization: If you don’t like the way files were organized, the app can reverse the process, moving files back to their original locations. Empty folders created during organization are also removed.
+
+This design ensures your folder stays tidy while giving you the option to revert changes if needed.
+
+Design Decisions
+
+GUI with Tkinter: Chosen for simplicity and cross-platform compatibility. The app can run locally on macOS without needing an external web browser or server.
+
+JSON Configuration: Using categories.json allows for easy updates and customization without changing the Python code. Users can add new categories or file extensions quickly.
+
+Undo Functionality: Implemented to respect users’ existing file organization. This way, if the automatic organization doesn’t match someone’s personal workflow, they can revert it immediately.
+
+Screenshots Subfolder: Screenshots are handled differently because they often clutter the Photos folder. This small design choice helps keep image files organized intuitively.
+
+One-Click Operation: The goal was to minimize user effort. You select a folder, click a button, and let the app do the work.
+
+How to Run the App
+
+Make sure Python 3 is installed on your Mac.
+
+Clone this repository or download the files.
+
+Open Terminal, navigate to the repository folder, and run:
+
+python3 organizer.py
 
 
+A simple GUI will appear. Click Organize Folder to organize files, or Undo Organization to restore them.
 
-Description:
+Note: You do not need to install any packages manually if you’re running from the app bundled with PyInstaller. If running from Python source, you may need tkinter (which is pre-installed on most macOS Python distributions).
 
-Downloads Organizer is a small app I built to help organize messy Downloads folders on a Mac. Downloads folders can get crowded over time with images, documents, videos, code files, and random downloads. I wanted something that could automatically sort files into categories but still give control, including the ability to undo any changes.
+Future Improvements
 
-The project is written in Python using Tkinter for the interface. It’s designed to be easy to use: just a few clicks to organize a folder or undo the organization. The categories and file types are in a JSON file, which makes it easy to customize or add new categories without touching the code.
+A fully standalone .app version that works out-of-the-box for anyone on macOS without running Python manually.
 
+Additional customization options in the GUI for categories, folder names, and exceptions.
 
+Integration with other operating systems like Windows or Linux.
 
+Acknowledgements
 
-How It Works:
-
-When a folder is selected, the app scans all the files. Each file’s extension is checked against the categories in categories.json. If a match is found, the file is moved into a folder with that category’s name. Examples:
-
-.jpg, .jpeg, .png, .gif, .heic → Photos
-
-.pdf, .docx, .txt → Documents
-
-.mp4, .mov → Videos
-
-Files that don’t match any category → Other
-
-Screenshots are handled specially. If a filename contains “screenshot” or “screen shot,” it goes into a Screenshots subfolder inside Photos. This keeps screenshots separate from normal photos, since screenshots are usually for work, school, or tutorials.
-
-The undo feature restores files to their original locations and removes empty category folders. This way, you can try the organizer without worrying about permanently changing your folders.
-
-
-
-
-Project Files:
-
-organizer.app – The standalone Mac app. You can double-click it to run, no setup needed.
-
-organizer.py – The Python script with all the code for organizing files, handling screenshots, and undoing changes. This file was used to create the .app.
-
-categories.json – The file that defines categories and the file types in each category. You can edit this to add or remove categories.
-
-
-
-Design Decisions:
-
-Screenshots in a Subfolder
-I wanted screenshots separate from personal photos, so they are put in a Screenshots folder inside Photos. This makes it easier to find screenshots without digging through personal photos.
-
-Undo Feature
-Many apps permanently move files, which can be frustrating if it doesn’t work the way you expected. The undo button restores everything and removes empty folders, giving users confidence to try the app.
-
-JSON Categories
-Using a JSON file makes the app flexible. You can add a School folder for assignments or a Code folder for scripts without changing the code.
-
-Simple GUI
-Tkinter was chosen because it comes with Python and works on Mac without extra setup. The interface is simple, with buttons for organizing and undoing, so anyone can use it.
-
-Easy to Use
-Users select a folder, click organize, and the app does the rest. No confusing menus or settings.
-
-Safe Undo
-When undoing, files are checked for conflicts. If a file with the same name exists, _restored is added. This prevents overwriting or losing files.
-
-Scalable Design
-The app can be extended to include more file types, nested subfolders, or smarter sorting rules without major changes.
-
-
-
-
-How to Run:
-
-Double-click organizer.app to launch.
-
-Click Organize Folder to select a folder to organize.
-
-Click Undo Organization to revert any changes.
-
-Keep categories.json in the same folder as the app so it knows how to sort files.
-
-
-
-
-Future Improvements:
-
-Allow custom category creation from the GUI.
-
-Add support for Windows and Linux.
-
-Drag-and-drop folder selection.
-
-Smarter sorting by date, size, or other criteria.
-
-
-
-
-Acknowledgments:
-
-Python and Tkinter for making this project possible.
-
-Personal inspiration from my own messy Downloads folder.
+This project was inspired by the need for a clean, simple, and reversible file organization system. It was developed as a Harvard CS50 final project and reflects thoughtful consideration of usability and design choices.
